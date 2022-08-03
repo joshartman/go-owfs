@@ -7,7 +7,7 @@ Still missing major functionality, but you can do a hello world directory listin
 package main
 
 import (
-        "github.com/dhiltgen/go-owfs"
+        "github.com/joshartman/go-owfs/v2"
         "log"
 )
 
