@@ -49,7 +49,11 @@ func (oc *OwfsClient) Dir(path string) ([]string, error) {
 			if err != nil {
 				return nil, fmt.Errorf("Failed to read payload from owserver: %s", err)
 			}
-			ret = append(ret, strings.TrimSpace(string(buf)))
+			name := string(buf)
+			if pos := strings.LastIndexByte(name, 0x00); pos >= 0 {
+				name = name[:len(name)-1]
+			}
+			ret = append(ret, strings.TrimSpace(name))
 			//log.Println("Response Payload: ", string(buf))
 		} else {
 			break
